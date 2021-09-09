@@ -10,8 +10,10 @@ const { log } = require("./logger.js");
 // So this code displays the project configuration
 // https://docs.commercetools.com/http-api-projects-project.html#get-project
 
-getProject().then(log).catch(log);
+// getProject().then(log).catch(log);
 
-//getShippingMethodById("fb9d70f3-c59a-4507-b1ad-73ad5acfac94").then(log).catch(log);
+getShippingMethodById("55f5722d-6bf1-493f-8f3c-75f2883c676f")
+  .then(log)
+  .catch(log);
 
-//getTaxCategoryByKey("VAT").then(log).catch(log);
+// getTaxCategoryByKey("default-tax").then(log).catch(log);

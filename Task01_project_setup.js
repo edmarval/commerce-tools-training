@@ -12,8 +12,8 @@ const { log } = require("./logger.js");
 
 // getProject().then(log).catch(log);
 
-getShippingMethodById("55f5722d-6bf1-493f-8f3c-75f2883c676f")
-  .then(log)
-  .catch(log);
+// getShippingMethodById("55f5722d-6bf1-493f-8f3c-75f2883c676f")
+//   .then(log)
+//   .catch(log);
 
-// getTaxCategoryByKey("default-tax").then(log).catch(log);
+getTaxCategoryByKey("default-tax").then(log).catch(log);

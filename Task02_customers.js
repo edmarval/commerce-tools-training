@@ -16,7 +16,7 @@ const customerSampleData = {
   countryCode: "DE",
 };
 
-createCustomer(customerSampleData).then(log).catch(log);
+// createCustomer(customerSampleData).then(log).catch(log);
 
 //getCustomerByKey('test123').then(log).catch(log);
 
@@ -24,4 +24,4 @@ createCustomer(customerSampleData).then(log).catch(log);
 
 //createCustomerKeyVerfiedEmail(customerSampleData).then(log).catch(log);
 
-//assignCustomerToCustomerGroup('test123','testCustomerGroup123').then(log).catch(log);
+assignCustomerToCustomerGroup("jhon_wick_123", "indoor").then(log).catch(log);

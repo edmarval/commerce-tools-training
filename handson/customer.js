@@ -2,7 +2,14 @@ const { apiRoot, projectKey } = require("./client.js");
 
 module.exports.getCustomerById = (ID) => {};
 
-module.exports.getCustomerByKey = (key) => {};
+module.exports.getCustomerByKey = (key) => {
+  return apiRoot
+    .withProjectKey({ projectKey })
+    .customers()
+    .withKey({ key })
+    .get()
+    .execute();
+};
 
 const createCustomerDraft = (customerData) => {
   const { firstName, lastName, email, password, key, countryCode } =
@@ -44,7 +51,30 @@ const createCustomerDraftKey = (customerData) => {};
 
 module.exports.createCustomerKeyVerfiedEmail = (customerData) => {};
 
-module.exports.assignCustomerToCustomerGroup = (
+module.exports.assignCustomerToCustomerGroup = async (
   customerKey,
   customerGroupKey
-) => {};
+) => {
+  const customer = await this.getCustomerByKey(customerKey);
+
+  const updateActions = [
+    {
+      action: "setCustomerGroup",
+      customerGroup: {
+        key: customerGroupKey,
+      },
+    },
+  ];
+
+  return apiRoot
+    .withProjectKey({ projectKey })
+    .customers()
+    .withKey({ key: customerKey })
+    .post({
+      body: {
+        version: customer.body.version,
+        actions: updateActions,
+      },
+    })
+    .execute();
+};

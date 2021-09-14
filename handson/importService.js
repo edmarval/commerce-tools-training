@@ -1,19 +1,19 @@
 const { importApiRoot, projectKey } = require("./client.js");
 const csvtojsonV2 = require("csvtojson");
 
-module.exports.createImportSink = (importSinkDraftData) =>{}
+module.exports.createImportContainer = (importContainerDraftData) => {}
 
-const createImportSinkDraft = (importSinkDraftData) => {
-  const { key, resourceType } = importSinkDraftData;
+const createImportContainerDraft = (importContainerDraftData) => {
+  const { key, resourceType } = importContainerDraftData;
   return {
     key,
     resourceType,
   };
 };
 
-module.exports.checkImportOperationStatus = (importSinkKey, id) =>{}
+module.exports.checkImportOperationStatus = (id) =>{}
 
-module.exports.importProducts = async (importSinkKey) =>{}
+module.exports.importProducts = async (importContainerKey) =>{}
 
 const createImportProductsDraft = async () => {
   return {

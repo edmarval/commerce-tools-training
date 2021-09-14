@@ -19,7 +19,7 @@ const paymentDraft = {
 };
 // checkout.createCart(cartDraftData).then(log).catch(log);
 
-//checkout.addLineItemsToCart(['123','123'],'294f2971-9497-43c1-8898-b7760082c842').then(log).catch(log)
+// checkout.addLineItemsToCart(['em-SKU102','em-SKU101'],'3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e').then(log).catch(log)
 
 checkout
   .getCartById("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e")

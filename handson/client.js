@@ -22,6 +22,7 @@ const {
   CTP_AUTH_URL,
   CTP_API_URL,
   CTP_SCOPES,
+  CTP_IMPORT_API_URL,
 } = process.env;
 
 const projectKey = CTP_PROJECT_KEY;
@@ -29,7 +30,6 @@ const projectKey = CTP_PROJECT_KEY;
 //use .env for credentials process.env.adminClientId
 
 const getClient = () => {
-
   const authMiddleware = createAuthMiddlewareForClientCredentialsFlow({
     host: CTP_AUTH_URL,
     projectKey,
@@ -52,7 +52,28 @@ const getClient = () => {
   return client;
 };
 
-const getImportClient = () => {};
+const getImportClient = () => {
+  const authMiddleware = createAuthMiddlewareForClientCredentialsFlow({
+    host: CTP_AUTH_URL,
+    projectKey,
+    credentials: {
+      clientId: CTP_CLIENT_ID,
+      clientSecret: CTP_CLIENT_SECRET,
+    },
+    scopes: [CTP_SCOPES],
+    fetch,
+  });
+  const httpMiddleware = createHttpMiddleware({
+    host: CTP_IMPORT_API_URL,
+    fetch,
+  });
+
+  const client = createClient({
+    middlewares: [authMiddleware, httpMiddleware],
+  });
+
+  return client;
+};
 
 const getStoreClient = () => {};
 
@@ -62,9 +83,9 @@ const getMyAPIClient = () => {};
 
 module.exports.apiRoot = createApiBuilderFromCtpClient(getClient());
 
-// module.exports.importApiRoot = createApiBuilderFromCtpClientOnlyForImports(
-//   getImportClient()
-// );
+module.exports.importApiRoot = createApiBuilderFromCtpClientOnlyForImports(
+  getImportClient()
+);
 
 // module.exports.storeApiRoot = createApiBuilderFromCtpClient(getStoreClient());
 

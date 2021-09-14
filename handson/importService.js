@@ -1,19 +1,40 @@
 const { importApiRoot, projectKey } = require("./client.js");
 const csvtojsonV2 = require("csvtojson");
 
-module.exports.createImportSink = (importSinkDraftData) =>{}
+module.exports.createImportContainer = (importContainerDraftData) => {
+  return importApiRoot
+    .withProjectKeyValue({ projectKey })
+    .importContainers()
+    .post({ body: createImportContainerDraft(importContainerDraftData) })
+    .execute();
+};
 
-const createImportSinkDraft = (importSinkDraftData) => {
-  const { key, resourceType } = importSinkDraftData;
+const createImportContainerDraft = (importContainerDraftData) => {
+  const { key, resourceType } = importContainerDraftData;
   return {
     key,
     resourceType,
   };
 };
 
-module.exports.checkImportOperationStatus = (importSinkKey, id) =>{}
+module.exports.checkImportOperationStatus = async (id) => {
+  return importApiRoot
+    .withProjectKeyValue({ projectKey })
+    .importOperations()
+    .withIdValue({ id })
+    .get()
+    .execute();
+};
 
-module.exports.importProducts = async (importSinkKey) =>{}
+module.exports.importProducts = async (importContainerKey) => {
+  return importApiRoot
+    .withProjectKeyValue({ projectKey })
+    .productDrafts()
+    .importContainers()
+    .withImportContainerKeyValue({ importContainerKey })
+    .post({ body: await createImportProductsDraft() })
+    .execute();
+};
 
 const createImportProductsDraft = async () => {
   return {
@@ -26,7 +47,7 @@ const getProductDraftsArray = () => {
   // get data from csv
   // create product drafts array and send it back
   let productDraftsArray = [];
-  let participantNamePrefix = "ff";
+  let participantNamePrefix = "em";
   return csvtojsonV2()
     .fromFile("./products.csv")
     .then((products) => {
@@ -34,21 +55,21 @@ const getProductDraftsArray = () => {
         productDraftsArray.push({
           key: participantNamePrefix + "-" + product.productName,
           name: {
-            "de": product.productName,
+            de: product.productName,
           },
           productType: {
             typeId: "product-type",
             key: product.productType,
           },
           slug: {
-            "de": participantNamePrefix + "-" + product.productName,
+            de: participantNamePrefix + "-" + product.productName,
           },
           description: {
-            "de": product.description,
+            de: product.description,
           },
           masterVariant: {
-            sku: participantNamePrefix + "-" +product.inventoryId,
-            key: participantNamePrefix + "-" +product.inventoryId,
+            sku: participantNamePrefix + "-" + product.inventoryId,
+            key: participantNamePrefix + "-" + product.inventoryId,
             prices: [
               {
                 value: {

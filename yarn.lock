@@ -7,10 +7,16 @@
   "resolved" "https://registry.npmjs.org/@commercetools/api-request-builder/-/api-request-builder-5.6.3.tgz"
   "version" "5.6.3"
 
-"@commercetools/importapi-sdk@^1.3.0":
-  "integrity" "sha512-IPKubLllEqtys8mEpOWZ1HyIe+vLYt5v9TFLLc0uXGdbO7tvu5ybvMU0jo+nkDH9B4RWGRvzfTdXzX96J5YyBw=="
-  "resolved" "https://registry.npmjs.org/@commercetools/importapi-sdk/-/importapi-sdk-1.3.0.tgz"
-  "version" "1.3.0"
+"@commercetools/importapi-sdk@^1.19.0":
+  "integrity" "sha512-ZZtnTHMTzrOww6E3U1hCtKrAQyZyKnx+nT9Ba9C32c3q8qGnnLQoOLel6om0lQPifNRTExFbWm5WVWZpfO+f2g=="
+  "resolved" "https://registry.npmjs.org/@commercetools/importapi-sdk/-/importapi-sdk-1.19.0.tgz"
+  "version" "1.19.0"
+  dependencies:
+    "@commercetools/sdk-client" "^2.1.1"
+    "@commercetools/sdk-middleware-auth" "^6.0.4"
+    "@commercetools/sdk-middleware-http" "^6.0.4"
+    "@commercetools/sdk-middleware-logger" "^2.1.1"
+    "querystring" "^0.2.1"
 
 "@commercetools/sdk-auth@^3.0.9":
   "integrity" "sha512-j7KYF5a2JTdfsONONE8NsHzFRqz40OTsPTS/GDyjnrDFvCT6gez665pheMS5ASRz/CjltrA+z5ucYFd4iaXxEg=="
@@ -21,22 +27,27 @@
     "lodash.defaultsdeep" "^4.6.0"
     "qss" "2.0.3"
 
-"@commercetools/sdk-client@^2.1.2":
+"@commercetools/sdk-client@^2.1.1", "@commercetools/sdk-client@^2.1.2":
   "integrity" "sha512-YPpK39pkjfedjS1/BFg2d7CrvTeN7vIS5vfiqEkKOtAoUxiNkugv59gRSoh2Em8SOccxyM/skpgHyTqfmJzXug=="
   "resolved" "https://registry.npmjs.org/@commercetools/sdk-client/-/sdk-client-2.1.2.tgz"
   "version" "2.1.2"
 
-"@commercetools/sdk-middleware-auth@^6.1.4":
+"@commercetools/sdk-middleware-auth@^6.0.4", "@commercetools/sdk-middleware-auth@^6.1.4":
   "integrity" "sha512-49R1DWsA+pNHH7/2K6QU5wnJSXabljKA8dvzs5HcbLwutlDp3Io0XHgIJa9qpfYhgW6k0h9dPICcLbESrQBXYw=="
   "resolved" "https://registry.npmjs.org/@commercetools/sdk-middleware-auth/-/sdk-middleware-auth-6.1.4.tgz"
   "version" "6.1.4"
   dependencies:
     "node-fetch" "^2.3.0"
 
-"@commercetools/sdk-middleware-http@^6.0.8":
+"@commercetools/sdk-middleware-http@^6.0.4", "@commercetools/sdk-middleware-http@^6.0.8":
   "integrity" "sha512-o1y96K5sZ5zOpHqesZt8I14SZMrZchDIOAv2pc3DDJwqguxEBvQMqAE7pwBySH/CLayrC8z6pfljPNFEMQNXGQ=="
   "resolved" "https://registry.npmjs.org/@commercetools/sdk-middleware-http/-/sdk-middleware-http-6.0.8.tgz"
   "version" "6.0.8"
+
+"@commercetools/sdk-middleware-logger@^2.1.1":
+  "integrity" "sha512-k/Jm3lsWbszPBHtPAvu0rINTq398p4ddv0zbAH8R4p6Yc1GkBEy6tNgHPzX/eFskI/qerPy9IsW1xK8pqgtHHQ=="
+  "resolved" "https://registry.npmjs.org/@commercetools/sdk-middleware-logger/-/sdk-middleware-logger-2.1.1.tgz"
+  "version" "2.1.1"
 
 "@commercetools/typescript-sdk@^1.2.0":
   "integrity" "sha512-DrnIR3JdWyJppZL4o0a9a6C3tBOG0DcW+P0SMreQo1Ir5SxmeMN1UtoNXmgtzaBB9M53IaY5DVW4aKS3PyA9qw=="
@@ -781,6 +792,11 @@
   "integrity" "sha512-j48ZBT5IZbSqJiSU8EX4XrN8nXiflHvmMvv2XpFc31gh7n6EpSs75bNr6+oj3FOLWyT8m09pTmqLNl34L7/uPQ=="
   "resolved" "https://registry.npmjs.org/qss/-/qss-2.0.3.tgz"
   "version" "2.0.3"
+
+"querystring@^0.2.1":
+  "integrity" "sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg=="
+  "resolved" "https://registry.npmjs.org/querystring/-/querystring-0.2.1.tgz"
+  "version" "0.2.1"
 
 "quick-lru@^1.0.0":
   "integrity" "sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g="

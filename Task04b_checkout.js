@@ -3,25 +3,28 @@ const { log } = require("./logger.js");
 
 const cartDraftData = {
   currency: "EUR",
-  customerId: "10cb16bf-a5d8-4f47-b664-fe5cae2f75d0",
+  customerId: "b75fa65d-a281-4221-bb00-f3707366efbb",
   countryCode: "DE",
 };
 const paymentDraft = {
-  key:"testPayment-2",
-  amountPlanned:{
-    currencyCode:'EUR',
-    centAmount:4200
+  key: "testPayment-2",
+  amountPlanned: {
+    currencyCode: "EUR",
+    centAmount: 4200,
   },
-  customer:{
-    typeId:'customer',
-    id:'10cb16bf-a5d8-4f47-b664-fe5cae2f75d0'
-  }
-}
-//checkout.createCart(cartDraftData).then(log).catch(log)
+  customer: {
+    typeId: "customer",
+    id: "b75fa65d-a281-4221-bb00-f3707366efbb",
+  },
+};
+// checkout.createCart(cartDraftData).then(log).catch(log);
 
 //checkout.addLineItemsToCart(['123','123'],'294f2971-9497-43c1-8898-b7760082c842').then(log).catch(log)
 
-//checkout.getCartById('294f2971-9497-43c1-8898-b7760082c842').then(log).catch(log)
+checkout
+  .getCartById("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e")
+  .then(log)
+  .catch(log);
 
 //checkout.createOrderFromCart('294f2971-9497-43c1-8898-b7760082c842').then(log).catch(log)
 
@@ -41,7 +44,7 @@ const checkoutProcess = async () => {
   let emptyCart = await checkout.createCart(cartDraftData);
 
   let filledCart = await checkout.addLineItemsToCart(
-    ["123", "123",'123'],
+    ["123", "123", "123"],
     emptyCart.body.id
   );
   filledCart = await checkout.addDiscountCodeToCart(
@@ -50,8 +53,8 @@ const checkoutProcess = async () => {
   );
   const payment = await checkout.createPayment(paymentDraft);
   let order = await checkout.createOrderFromCart(filledCart.body.id);
-  order = await checkout.addPaymentToOrder(payment.body.id,order.body.id);
-  order = await checkout.setOrderState('Confirmed',order.body.id);
+  order = await checkout.addPaymentToOrder(payment.body.id, order.body.id);
+  order = await checkout.setOrderState("Confirmed", order.body.id);
   if (order) {
     return {
       status: 201,
@@ -60,4 +63,4 @@ const checkoutProcess = async () => {
   }
 };
 
-checkoutProcess().then(log).catch(log);
+// checkoutProcess().then(log).catch(log);

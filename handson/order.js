@@ -22,7 +22,13 @@ const createCartDraft = (cartDraftData) => {
   };
 };
 
-module.exports.customerSignIn = (customerDetails) => {};
+module.exports.customerSignIn = async (customerDetails) => {
+  return apiRoot
+    .withProjectKey({ projectKey })
+    .login()
+    .post({ body: customerDetails })
+    .execute();
+};
 
 module.exports.getCartById = async (ID) => {
   return apiRoot
@@ -33,16 +39,16 @@ module.exports.getCartById = async (ID) => {
     .execute();
 };
 
-module.exports.addLineItemsToCart = async (arrayOfSKUs, cartId) => {
+module.exports.addLineItemsToCart = async (arrayOfLineItems, cartId) => {
   const currentCart = await this.getCartById(cartId);
 
   let updateActions = [];
 
-  arrayOfSKUs.map((itemSku) => {
+  arrayOfLineItems.map((lineItem) => {
     updateActions.push({
       action: "addLineItem",
-      sku: itemSku,
-      quantity: 2,
+      sku: lineItem.sku,
+      quantity: lineItem.quantity,
     });
   });
 

@@ -17,6 +17,17 @@ const paymentDraft = {
     id: "b75fa65d-a281-4221-bb00-f3707366efbb",
   },
 };
+
+const lineItemsToAddCart = [
+  {
+    sku: "em-SKU102",
+    quantity: 1,
+  },
+  {
+    sku: "em-SKU101",
+    quantity: 4,
+  },
+];
 // checkout.createCart(cartDraftData).then(log).catch(log);
 
 // checkout.addLineItemsToCart(['em-SKU102','em-SKU101'],'3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e').then(log).catch(log)

@@ -18,23 +18,36 @@ const mergingProcessTest = async () => {
 
   let customerCart = await checkout.createCart(cartDraftData2);
 
+  const lineItemsToAddToAnonymousCart = [
+    {
+      sku: "em-SKU101",
+      quantity: 1,
+    },
+  ];
+
+  const lineItemsToAddToCustomerCart = [
+    {
+      sku: "em-SKU102",
+      quantity: 3,
+    },
+  ];
+
   anonymousCart = await checkout.addLineItemsToCart(
-    ["123", "123"],
+    lineItemsToAddToAnonymousCart,
     anonymousCart.body.id
   );
 
   customerCart = await checkout.addLineItemsToCart(
-    ["123"],
+    lineItemsToAddToCustomerCart,
     customerCart.body.id
   );
-  log(anonymousCart.body.id); // look it up in impex you will see it's merged
-  log(customerCart.body.id);
-  const customerDetails = {
-    email: "persona1@example.com",
-    password: "123",
-    anonymousCartId: anonymousCart.body.id,
-  };
-  let test = await checkout.customerSignIn(customerDetails);
-  return test;
+  log("Anonymouse Cart Id: " + anonymousCart.body.id); // look it up in impex you will see it's merged
+  log("Customer Cart Id: " + customerCart.body.id);
 };
-mergingProcessTest().then(log).catch(log);
+// mergingProcessTest();
+
+const customerSignIn = async (anonymousCartId) => {
+
+};
+
+customerSignIn("cec67165-073c-4d07-828d-bd4223a77a0a").then(log).catch(log);

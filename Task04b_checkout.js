@@ -32,8 +32,13 @@ const lineItemsToAddCart = [
 
 // checkout.addLineItemsToCart(['em-SKU102','em-SKU101'],'3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e').then(log).catch(log)
 
+// checkout
+//   .getCartById("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e")
+//   .then(log)
+//   .catch(log);
+
 checkout
-  .getCartById("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e")
+  .addDiscountCodeToCart("SPLASH", "3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e")
   .then(log)
   .catch(log);
 

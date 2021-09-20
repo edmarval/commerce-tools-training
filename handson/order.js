@@ -65,7 +65,28 @@ module.exports.addLineItemsToCart = async (arrayOfLineItems, cartId) => {
     .execute();
 };
 
-module.exports.addDiscountCodeToCart = (discountCode, cartId) => {};
+module.exports.addDiscountCodeToCart = async (discountCode, cartId) => {
+  const cart = await this.getCartById(cartId);
+
+  const updateActions = [
+    {
+      action: "addDiscountCode",
+
+      code: discountCode,
+    },
+  ];
+  return apiRoot
+    .withProjectKey({ projectKey })
+    .carts()
+    .withId({ ID: cartId })
+    .post({
+      body: {
+        version: cart.body.version,
+        actions: updateActions,
+      },
+    })
+    .execute();
+};
 
 module.exports.createOrderFromCart = (cartId) => {};
 

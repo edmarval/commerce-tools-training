@@ -1,16 +1,25 @@
 const states = require("./handson/states");
 const { log } = require("./logger.js");
 
-const stateDraftData = {
-  key: "order-completed",
+const orderStartedStateDraftData = {
+  key: "order-started",
   type: "OrderState",
   name: {
-    "de": "Order Completed ",
+    "de": "Order Started ",
+  },
+  initial: true,
+};
+
+const orderProcessedStateDraftData = {
+  key: "order-processed",
+  type: "OrderState",
+  name: {
+    "de": "Order Processed ",
   },
   initial: false,
 };
 
-//states.createNewState(stateDraftData).then(log).catch(log)
+states.createNewState(orderProcessedStateDraftData).then(log).catch(log)
 
 //states.getStateById("67c67c4e-a3ab-4d38-ab0b-741cfd4b3d44").then(log).catch(log)
 

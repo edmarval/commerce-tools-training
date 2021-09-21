@@ -105,7 +105,14 @@ const createOrderFromCartDraft = (cartId) => {
   });
 };
 
-module.exports.getOrderById = (ID) => {};
+module.exports.getOrderById = (ID) => {
+  return apiRoot
+  .withProjectKey({ projectKey })
+  .orders()
+  .withId({ ID })
+  .get()
+  .execute();
+};
 
 module.exports.updateOrderCustomState = (customStateId, orderId) => {};
 
@@ -119,4 +126,27 @@ module.exports.createPayment = (paymentDraft) => {
 
 module.exports.setOrderState = (stateName, orderId) => {};
 
-module.exports.addPaymentToOrder = (paymentId, orderId) => {};
+module.exports.addPaymentToOrder = async (paymentId, orderId) => {
+
+  const order = await this.getOrderById(orderId);
+
+  const orderUpdateActions = [
+    {
+      action: "addPayment",
+      payment: {
+        id: paymentId,
+      },
+    },
+  ];
+  return apiRoot
+  .withProjectKey({ projectKey })
+  .orders()
+  .withId({ ID: orderId })
+  .post({
+    body: {
+      version: order.body.version,
+      actions: orderUpdateActions,
+    },
+  })
+  .execute();
+};

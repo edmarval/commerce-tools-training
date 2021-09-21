@@ -19,8 +19,8 @@ const orderProcessedStateDraftData = {
   initial: false,
 };
 
-states.createNewState(orderProcessedStateDraftData).then(log).catch(log)
+// states.createNewState(orderProcessedStateDraftData).then(log).catch(log)
 
 // states.getStateById("bddd6db3-06e6-40f7-86f0-ff7adc9d6fbf").then(log).catch(log)
 
-//states.addTransition("eb35b1d8-9cad-478f-a7a6-11d95cc5e79a", "a5f8b4bd-6314-4f4e-acbb-780ac3e3772e").then(log).catch(log)
+states.addTransition("bddd6db3-06e6-40f7-86f0-ff7adc9d6fbf", "45e1808a-7026-4041-8e1f-9527a9d93773").then(log).catch(log)

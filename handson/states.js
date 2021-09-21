@@ -30,4 +30,25 @@ module.exports.getStateById = (ID) =>{
   .execute();
 }
 
-module.exports.addTransition = (stateId, transitionStateId) => {}
+module.exports.addTransition = async (stateId, transitionStateId) => {
+  const currentState = await this.getStateById(stateId);
+
+  const updateActions = [
+    {
+      action: "setTransitions",
+      transitions: [
+        {
+          id: transitionStateId,
+        },
+      ],
+    },
+  ];
+  return apiRoot
+  .withProjectKey({ projectKey })
+  .states()
+  .withId({ ID: stateId })
+  .post({
+    body: { version: currentState.body.version, actions: updateActions },
+  })
+  .execute();
+}

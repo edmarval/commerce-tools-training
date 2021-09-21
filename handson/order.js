@@ -30,7 +30,7 @@ module.exports.customerSignIn = async (customerDetails) => {
     .execute();
 };
 
-module.exports.getCartById = async (ID) => {
+module.exports.getCartById = (ID) => {
   return apiRoot
     .withProjectKey({ projectKey })
     .carts()
@@ -88,10 +88,16 @@ module.exports.addDiscountCodeToCart = async (discountCode, cartId) => {
     .execute();
 };
 
-module.exports.createOrderFromCart = (cartId) => {};
+module.exports.createOrderFromCart = async (cartId) => {
+  return apiRoot
+  .withProjectKey({ projectKey })
+  .orders()
+  .post({ body: await createOrderFromCartDraft(cartId) })
+  .execute();
+};
 
 const createOrderFromCartDraft = (cartId) => {
-  return getCartById(cartId).then((cart) => {
+  return this.getCartById(cartId).then((cart) => {
     return {
       id: cart.body.id,
       version: cart.body.version,

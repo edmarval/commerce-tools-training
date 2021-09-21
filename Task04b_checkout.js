@@ -56,7 +56,9 @@ const lineItemsToAddCart = [
 //   .then(log)
 //   .catch(log);
 
-checkout.createOrderFromCart("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e").then(log).catch(log);
+// checkout.createOrderFromCart("3e4f3e6d-04bc-4ec5-9c2b-c324a5e6ca1e").then(log).catch(log);
+
+checkout.createPayment(paymentDraft).then(log).catch(log);
 
 const checkoutProcess = async () => {
   let emptyCart = await checkout.createCart(cartDraftData);

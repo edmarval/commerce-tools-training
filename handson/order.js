@@ -109,7 +109,13 @@ module.exports.getOrderById = (ID) => {};
 
 module.exports.updateOrderCustomState = (customStateId, orderId) => {};
 
-module.exports.createPayment = (paymentDraft) => {};
+module.exports.createPayment = (paymentDraft) => {
+  return apiRoot
+  .withProjectKey({ projectKey })
+  .payments()
+  .post({ body: paymentDraft })
+  .execute();
+};
 
 module.exports.setOrderState = (stateName, orderId) => {};
 
